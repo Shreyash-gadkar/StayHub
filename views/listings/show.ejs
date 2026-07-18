@@ -1,0 +1,16 @@
+<h1><%= listing.title %></h1>
+
+<p><%= listing.description %></p>
+
+<p>₹ <%= listing.price %></p>
+
+<p><%= listing.location %></p>
+
+<p><%= listing.country %></p>
+
+<a href="/listings/<%= listing._id %>/edit">
+  <button>Edit</button>
+</a>
+<form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+  <button class="btn btn-danger">Delete</button>
+</form>
