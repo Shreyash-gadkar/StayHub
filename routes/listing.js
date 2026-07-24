@@ -1,27 +1,30 @@
 const express = require("express");
 const router = express.Router();
 
+const { validateListing } = require("../middleware");
+const wrapAsync = require("../utils/wrapAsync");
+
 const listingController = require("../controllers/listings");
 
-// Index Route
-router.get("/", listingController.index);
+// Index
+router.get("/", wrapAsync(listingController.index));
 
-// New Route
+// New
 router.get("/new", listingController.renderNewForm);
 
-// Show Route
-router.get("/:id", listingController.showListing);
+// Create
+router.post("/", validateListing, wrapAsync(listingController.createListing));
 
-// Create Route
-router.post("/", listingController.createListing);
+// Edit
+router.get("/:id/edit", wrapAsync(listingController.editListing));
 
-// Edit Route
-router.get("/:id/edit", listingController.renderEditForm);
+// Show
+router.get("/:id", wrapAsync(listingController.showListing));
 
-// Update Route
-router.put("/:id", listingController.updateListing);
+// Update
+router.put("/:id", validateListing, wrapAsync(listingController.updateListing));
 
-// Delete Route
-router.delete("/:id", listingController.deleteListing);
+// Delete
+router.delete("/:id", wrapAsync(listingController.deleteListing));
 
 module.exports = router;

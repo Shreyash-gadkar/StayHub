@@ -20,13 +20,13 @@ module.exports.showListing = async (req, res) => {
 
 // Create Route
 module.exports.createListing = async (req, res) => {
-  const newListing = new Listing(req.body);
+  const newListing = new Listing(req.body.listing);
   await newListing.save();
   res.redirect("/listings");
 };
 
 // Edit Route
-module.exports.renderEditForm = async (req, res) => {
+module.exports.editListing = async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
   res.render("listings/edit", { listing });
@@ -35,7 +35,7 @@ module.exports.renderEditForm = async (req, res) => {
 // Update Route
 module.exports.updateListing = async (req, res) => {
   const { id } = req.params;
-  await Listing.findByIdAndUpdate(id, req.body);
+  await Listing.findByIdAndUpdate(id, req.body.listing);
   res.redirect(`/listings/${id}`);
 };
 

@@ -1,28 +1,71 @@
+<h1>Create a New Listing</h1>
+
 <form action="/listings" method="POST">
-  <label>Title</label>
-  <input type="text" name="title" />
+  <label for="title">Title</label><br />
+  <input
+    type="text"
+    id="title"
+    name="listing[title]"
+    placeholder="Enter title"
+    required
+  />
 
   <br /><br />
 
-  <label>Description</label>
-  <textarea name="description"></textarea>
+  <label for="description">Description</label><br />
+  <textarea
+    id="description"
+    name="listing[description]"
+    rows="4"
+    placeholder="Enter description"
+    required
+  ></textarea>
 
   <br /><br />
 
-  <label>Price</label>
-  <input type="number" name="price" />
+  <label for="image">Image URL</label><br />
+  <input
+    type="text"
+    id="image"
+    name="listing[image]"
+    placeholder="Enter image URL"
+    required
+  />
 
   <br /><br />
 
-  <label>Location</label>
-  <input type="text" name="location" />
+  <label for="price">Price</label><br />
+  <input
+    type="number"
+    id="price"
+    name="listing[price]"
+    placeholder="Enter price"
+    required
+  />
 
   <br /><br />
 
-  <label>Country</label>
-  <input type="text" name="country" />
+  <label for="location">Location</label><br />
+  <input
+    type="text"
+    id="location"
+    name="listing[location]"
+    placeholder="Enter location"
+    required
+  />
 
   <br /><br />
 
-  <button>Add Listing</button>
+  <label for="country">Country</label><br />
+  <input
+    type="text"
+    id="country"
+    name="listing[country]"
+    placeholder="Enter country"
+    required
+  />
+
+  <br /><br />
+
+  <button type="submit">Add Listing</button>
 </form>

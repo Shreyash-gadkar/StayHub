@@ -2,35 +2,40 @@
 
 <div class="row">
 
-<% for(let listing of allListings) { %>
+    <% for(let listing of allListings) { %>
 
-<a href="/listings/<%= listing._id %>"  class="listing-link">
+        <a href="/listings/<%= listing._id %>" class="listing-link">
 
-    <div class="card col-3 m-3">
+            <div class="card col-3 m-3">
 
-        <div class="card-body">
+                <div class="card-body">
 
-            <h5 class="card-title">
-                <%= listing.title %>
-            </h5>
+                    <h5 class="card-title">
+                        <%= listing.title %>
+                    </h5>
 
-            <p class="card-text">
-                ₹ <%= listing.price %> / night
-            </p>
+                    <p class="card-text">
+                        ₹ <%= listing.price %> / night
+                    </p>
 
-            <p>
-                <%= listing.location %>,
-                <%= listing.country %>
-            </p>
+                    <p class="card-text">
+                        <% if (listing.description) { %>
+                            <%= listing.description.substring(0, 80) %>...
+                        <% } else { %>
+                            No description available.
+                        <% } %>
+                    </p>
 
-        </div>
+                    <p class="card-text">
+                        <%= listing.location %>, <%= listing.country %>
+                    </p>
 
-    </div>
+                </div>
 
-</a>
+            </div>
 
-</div>
+        </a>
 
-<% } %>
+    <% } %>
 
 </div>

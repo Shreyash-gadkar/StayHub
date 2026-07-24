@@ -2,29 +2,29 @@
 
 <form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
   <label>Title</label>
-  <input type="text" name="title" value="<%= listing.title %>" />
+  <input type="text" name="listing[title]" value="<%= listing.title %>" />
 
   <br /><br />
 
   <label>Description</label>
-  <textarea name="description"><%= listing.description %></textarea>
+  <textarea name="listing[description]"><%= listing.description %></textarea>
 
   <br /><br />
 
   <label>Price</label>
-  <input type="number" name="price" value="<%= listing.price %>" />
+  <input type="number" name="listing[price]" value="<%= listing.price %>" />
 
   <br /><br />
 
   <label>Location</label>
-  <input type="text" name="location" value="<%= listing.location %>" />
+  <input type="text" name="listing[location]" value="<%= listing.location %>" />
 
   <br /><br />
 
   <label>Country</label>
-  <input type="text" name="country" value="<%= listing.country %>" />
+  <input type="text" name="listing[country]" value="<%= listing.country %>" />
 
   <br /><br />
 
-  <button>Save Changes</button>
+  <button type="submit">Save Changes</button>
 </form>
