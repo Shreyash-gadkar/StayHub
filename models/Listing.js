@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const listingSchema = new mongoose.Schema({
   title: {
@@ -20,6 +21,10 @@ const listingSchema = new mongoose.Schema({
   },
   country: {
     type: String,
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 

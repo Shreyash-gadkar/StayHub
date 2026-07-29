@@ -21,7 +21,11 @@ module.exports.showListing = async (req, res) => {
 // Create Route
 module.exports.createListing = async (req, res) => {
   const newListing = new Listing(req.body.listing);
+  newListing.owner = req.user._id;
   await newListing.save();
+
+  req.flash("success", "New listing created successfully!");
+
   res.redirect("/listings");
 };
 
@@ -35,13 +39,21 @@ module.exports.editListing = async (req, res) => {
 // Update Route
 module.exports.updateListing = async (req, res) => {
   const { id } = req.params;
+
   await Listing.findByIdAndUpdate(id, req.body.listing);
+
+  req.flash("success", "Listing updated successfully!");
+
   res.redirect(`/listings/${id}`);
 };
 
 // Delete Route
 module.exports.deleteListing = async (req, res) => {
   const { id } = req.params;
+
   await Listing.findByIdAndDelete(id);
+
+  req.flash("success", "Listing deleted successfully!");
+
   res.redirect("/listings");
 };

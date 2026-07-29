@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="/css/style.css" />
   </head>
+
   <body>
     <nav class="navbar navbar-light bg-light">
       <div class="container">
@@ -20,7 +21,9 @@
       </div>
     </nav>
 
-    <div class="container mt-4"><%- body %></div>
+    <div class="container mt-4">
+      <%- include("../includes/flash.ejs") %> <%- body %>
+    </div>
 
     <footer class="text-center mt-5 mb-3">© StayHub</footer>
 
