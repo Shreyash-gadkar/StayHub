@@ -1,31 +1,120 @@
 <% layout("/layouts/boilerplate") %>
-<h1>Edit Listing</h1>
 
-<form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
-  <label>Title</label>
-  <input type="text" name="listing[title]" value="<%= listing.title %>" />
+<div class="row mt-4">
+    <div class="col-md-8 offset-md-2">
 
-  <br /><br />
+        <h2 class="mb-4">Edit Listing</h2>
 
-  <label>Description</label>
-  <textarea name="listing[description]"><%= listing.description %></textarea>
+        <form
+            action="/listings/<%= listing._id %>?_method=PUT"
+            method="POST"
+            enctype="multipart/form-data"
+        >
 
-  <br /><br />
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
 
-  <label>Price</label>
-  <input type="number" name="listing[price]" value="<%= listing.price %>" />
+                <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="listing[title]"
+                    value="<%= listing.title %>"
+                    required
+                >
+            </div>
 
-  <br /><br />
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
 
-  <label>Location</label>
-  <input type="text" name="listing[location]" value="<%= listing.location %>" />
+                <textarea
+                    class="form-control"
+                    id="description"
+                    name="listing[description]"
+                    rows="4"
+                    required
+                ><%= listing.description %></textarea>
+            </div>
 
-  <br /><br />
+            <% if (listing.image && listing.image.url) { %>
 
-  <label>Country</label>
-  <input type="text" name="listing[country]" value="<%= listing.country %>" />
+                <div class="mb-3">
+                    <p class="mb-2"><strong>Current Image</strong></p>
 
-  <br /><br />
+                    <img
+                        src="<%= listing.image.url %>"
+                        alt="<%= listing.title %>"
+                        class="img-fluid rounded"
+                        style="max-width: 300px;"
+                    >
+                </div>
 
-  <button type="submit">Save Changes</button>
-</form>
+            <% } %>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">
+                    Upload New Image
+                </label>
+
+                <input
+                    type="file"
+                    class="form-control"
+                    id="image"
+                    name="listing[image]"
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    id="price"
+                    name="listing[price]"
+                    value="<%= listing.price %>"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="location"
+                    name="listing[location]"
+                    value="<%= listing.location %>"
+                    required
+                >
+            </div>
+
+            <div class="mb-4">
+                <label for="country" class="form-label">Country</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="country"
+                    name="listing[country]"
+                    value="<%= listing.country %>"
+                    required
+                >
+            </div>
+
+            <button class="btn btn-dark">
+                Save Changes
+            </button>
+
+            <a
+                href="/listings/<%= listing._id %>"
+                class="btn btn-secondary"
+            >
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+</div>

@@ -1,28 +1,44 @@
 const express = require("express");
 const router = express.Router();
 
-const { isLoggedIn, isOwner, validateListing } = require("../middleware");
-const wrapAsync = require("../utils/wrapAsync");
+const multer = require("multer");
+const { storage } = require("../cloudConfig");
+const upload = multer({ storage });
 
+const { isLoggedIn, isOwner, validateListing } = require("../middleware");
+
+const wrapAsync = require("../utils/wrapAsync");
 const listingController = require("../controllers/listings");
 
-// Index
+// ==========================
+// Index Route
+// ==========================
 router.get("/", wrapAsync(listingController.index));
 
-// New
-router.get("/new", isLoggedIn, (req, res) => {
-  res.render("listings/new");
-});
+// ==========================
+// New Route
+// ==========================
+router.get("/new", isLoggedIn, listingController.renderNewForm);
 
-// Create
+// ==========================
+// Create Route
+// ==========================
 router.post(
   "/",
   isLoggedIn,
+  upload.single("image"),
   validateListing,
   wrapAsync(listingController.createListing),
 );
 
-// Edit
+// ==========================
+// Show Route
+// ==========================
+router.get("/:id", wrapAsync(listingController.showListing));
+
+// ==========================
+// Edit Route
+// ==========================
 router.get(
   "/:id/edit",
   isLoggedIn,
@@ -30,24 +46,26 @@ router.get(
   wrapAsync(listingController.editListing),
 );
 
-// Show
-router.get("/:id", wrapAsync(listingController.showListing));
-
-// Update
+// ==========================
+// Update Route
+// ==========================
 router.put(
   "/:id",
   isLoggedIn,
   isOwner,
+  upload.single("listing[image]"),
   validateListing,
   wrapAsync(listingController.updateListing),
 );
 
-// Delete
+// ==========================
+// Delete Route
+// ==========================
 router.delete(
   "/:id",
   isLoggedIn,
   isOwner,
-  wrapAsync(listingController.deleteListing),
+  wrapAsync(listingController.destroyListing),
 );
 
 module.exports = router;

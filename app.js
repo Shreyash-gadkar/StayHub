@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
 
@@ -11,8 +15,11 @@ const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
 
 const User = require("./models/user");
+
 const userRouter = require("./routes/user");
 const listingRouter = require("./routes/listing");
+const reviewRouter = require("./routes/review");
+
 const ExpressError = require("./utils/ExpressError");
 
 // ===============================
@@ -24,8 +31,12 @@ async function main() {
 }
 
 main()
-  .then(() => console.log("Connected to DB"))
-  .catch((err) => console.log(err));
+  .then(() => {
+    console.log("Connected to DB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // ===============================
 // App Configuration
@@ -48,9 +59,14 @@ app.use(express.static(path.join(__dirname, "public")));
 // ===============================
 
 const sessionOptions = {
-  secret: "mysupersecretcode",
+  secret: process.env.SECRET || "mysupersecretcode",
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
 };
 
 app.use(session(sessionOptions));
@@ -67,6 +83,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// ===============================
+// Global Variables
+// ===============================
 
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
@@ -85,6 +105,7 @@ app.get("/", (req, res) => {
 
 app.use("/", userRouter);
 app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
 
 // ===============================
 // Error Handling
@@ -97,16 +118,17 @@ app.all("*", (req, res, next) => {
 
 // Global Error Handler
 app.use((err, req, res, next) => {
-  let { statusCode = 500 } = err;
-  let { message = "Something Went Wrong!" } = err;
+  const { statusCode = 500 } = err;
 
-  res.status(statusCode).render("error.ejs", { err });
+  res.status(statusCode).render("error", { err });
 });
 
 // ===============================
 // Server
 // ===============================
 
-app.listen(8080, () => {
-  console.log("Server is listening on port 8080");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
