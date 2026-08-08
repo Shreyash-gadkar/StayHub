@@ -1,5 +1,6 @@
 const Listing = require("../models/Listing");
 const { cloudinary } = require("../cloudConfig");
+const geocoder = require("../utils/geocoder");
 
 // Index Route
 module.exports.index = async (req, res) => {
@@ -42,6 +43,13 @@ module.exports.createListing = async (req, res) => {
   newListing.image = {
     url: req.file.path,
     filename: req.file.filename,
+  };
+
+  const geoData = await geocoder.geocode(req.body.listing.location);
+
+  newListing.geometry = {
+    type: "Point",
+    coordinates: [geoData[0].longitude, geoData[0].latitude],
   };
 
   await newListing.save();

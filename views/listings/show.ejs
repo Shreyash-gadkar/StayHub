@@ -40,6 +40,11 @@
                 <p>
                     📍 <%= listing.location %>, <%= listing.country %>
                 </p>
+            <div
+    id="map"
+    data-coordinates="<%= JSON.stringify(listing.geometry.coordinates) %>"
+    data-title="<%= listing.title %>"
+></div>
 
                 <% if (currUser && listing.owner.equals(currUser._id)) { %>
 
@@ -178,3 +183,25 @@
     </div>
 
 </div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    const mapElement = document.getElementById("map");
+
+    const coordinates = JSON.parse(mapElement.dataset.coordinates);
+    const title = mapElement.dataset.title;
+
+    const longitude = coordinates[0];
+    const latitude = coordinates[1];
+
+    const map = L.map("map").setView([latitude, longitude], 13);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    L.marker([latitude, longitude])
+        .addTo(map)
+        .bindPopup(title)
+        .openPopup();
+</script>
