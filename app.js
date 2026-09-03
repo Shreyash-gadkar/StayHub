@@ -1,7 +1,7 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
+const cors = require("cors");
 const express = require("express");
 const app = express();
 
@@ -50,6 +50,8 @@ app.set("views", path.join(__dirname, "views"));
 // Middlewares
 // ===============================
 
+app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
