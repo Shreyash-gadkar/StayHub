@@ -14,6 +14,7 @@ const listingController = require("../controllers/listings");
 // Index Route
 // ==========================
 router.get("/", wrapAsync(listingController.index));
+router.get("/api", wrapAsync(listingController.apiIndex));
 
 // ==========================
 // New Route

@@ -12,6 +12,11 @@ module.exports.index = async (req, res) => {
 module.exports.renderNewForm = (req, res) => {
   res.render("listings/new");
 };
+// API Index Route
+module.exports.apiIndex = async (req, res) => {
+  const allListings = await Listing.find({});
+  res.json(allListings);
+};
 
 // Show Route
 module.exports.showListing = async (req, res) => {
