@@ -35,8 +35,9 @@ router.post(
 // ==========================
 // Show Route
 // ==========================
-router.get("/:id", wrapAsync(listingController.showListing));
+router.get("/api/:id", wrapAsync(listingController.showListingApi));
 
+router.get("/:id", wrapAsync(listingController.showListing));
 // ==========================
 // Edit Route
 // ==========================

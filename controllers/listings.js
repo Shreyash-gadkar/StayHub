@@ -38,7 +38,26 @@ module.exports.showListing = async (req, res) => {
 
   res.render("listings/show", { listing });
 };
+module.exports.showListingApi = async (req, res) => {
+  const { id } = req.params;
 
+  const listing = await Listing.findById(id)
+    .populate({
+      path: "reviews",
+      populate: {
+        path: "author",
+      },
+    })
+    .populate("owner");
+
+  if (!listing) {
+    return res.status(404).json({
+      message: "Listing not found",
+    });
+  }
+
+  res.json(listing);
+};
 // Create Route
 module.exports.createListing = async (req, res) => {
   const newListing = new Listing(req.body.listing);

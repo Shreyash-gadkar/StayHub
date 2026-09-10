@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function ListingCard({ listing }) {
   return (
     <div>
-      <img src={listing.image} alt={listing.title} />
+      <img src={listing.image.url} alt={listing.title} />
 
       <h2>{listing.title}</h2>
 
@@ -14,7 +14,8 @@ function ListingCard({ listing }) {
       <p>
         {listing.location}, {listing.country}
       </p>
-      <Link to={`/listings/${listing.id}`}>View Details</Link>
+
+      <Link to={`/listings/${listing._id}`}>View Details</Link>
     </div>
   );
 }

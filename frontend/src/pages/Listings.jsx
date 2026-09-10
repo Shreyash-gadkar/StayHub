@@ -30,7 +30,7 @@ function Listings() {
       />
 
       {filteredListings.map((listing) => (
-        <ListingCard key={listing.id} listing={listing} />
+        <ListingCard key={listing._id} listing={listing} />
       ))}
     </div>
   );

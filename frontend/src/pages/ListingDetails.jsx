@@ -1,13 +1,28 @@
 import { useParams } from "react-router-dom";
-import listings from "../data/listings";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 function ListingDetails() {
   const { id } = useParams();
+
+  const [listing, setListing] = useState(null);
   const [liked, setLiked] = useState(false);
 
-  const listing = listings.find((listing) => listing.id === Number(id));
+  useEffect(() => {
+    fetch(`https://stayhub-v40w.onrender.com/listings/api/${id}`)
+      .then((response) => {
+        console.log("STATUS:", response.status);
+        return response.text();
+      })
+      .then((data) => {
+        console.log("RESPONSE:", data);
+      })
+      .catch((error) => {
+        console.log("ERROR:", error);
+      });
+  }, [id]);
+
   if (!listing) {
-    return <h1>Listing Not Found 😕</h1>;
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -21,6 +36,7 @@ function ListingDetails() {
       <p>
         {listing.location}, {listing.country}
       </p>
+
       <button onClick={() => setLiked(!liked)}>
         {liked ? "❤️ Liked" : "🤍 Like"}
       </button>
