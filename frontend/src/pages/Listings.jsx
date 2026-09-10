@@ -6,7 +6,7 @@ function Listings() {
   const [search, setSearch] = useState("");
   const [listings, setListings] = useState([]);
   useEffect(() => {
-    fetch("https://stayhub-v40w.onrender.com/listings/api")
+    fetch("http://localhost:8080/listings/api")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

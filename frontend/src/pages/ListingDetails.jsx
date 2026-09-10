@@ -8,13 +8,11 @@ function ListingDetails() {
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    fetch(`https://stayhub-v40w.onrender.com/listings/api/${id}`)
-      .then((response) => {
-        console.log("STATUS:", response.status);
-        return response.text();
-      })
+    fetch(`http://localhost:8080/listings/api/${id}`)
+      .then((response) => response.json())
       .then((data) => {
-        console.log("RESPONSE:", data);
+        console.log("LISTING DATA:", data);
+        setListing(data);
       })
       .catch((error) => {
         console.log("ERROR:", error);
@@ -27,6 +25,8 @@ function ListingDetails() {
 
   return (
     <div>
+      <img src={listing.image.url} alt={listing.title} />
+
       <h1>{listing.title}</h1>
 
       <p>{listing.description}</p>
@@ -37,9 +37,21 @@ function ListingDetails() {
         {listing.location}, {listing.country}
       </p>
 
+      <p>Owner: {listing.owner.username}</p>
+
       <button onClick={() => setLiked(!liked)}>
         {liked ? "❤️ Liked" : "🤍 Like"}
       </button>
+
+      <h2>Reviews</h2>
+
+      {listing.reviews.map((review) => (
+        <div key={review._id}>
+          <p>{review.comment}</p>
+          <p>Rating: ⭐ {review.rating}/5</p>
+          <p>By: {review.author.username}</p>
+        </div>
+      ))}
     </div>
   );
 }
