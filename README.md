@@ -1,216 +1,328 @@
-Absolutely. Now that StayHub is actually **deployed with React + Vite frontend on Vercel and Express backend on Render**, the README should reflect the **final project**, not the older EJS-only version.
+🏠 StayHub
 
-One important correction: your current README says the live demo is the Render backend. The actual user-facing application is the **Vercel frontend**.
+<p align="center">
+  <strong>Full-Stack Accommodation Rental Platform</strong>
+</p>
 
-Here’s a clean, up-to-date version you can replace your `README.md` with:
+<p align="center">
+  Discover stays • Create listings • Upload images • Review properties • Make bookings
+</p>
 
-````markdown
-# 🏠 StayHub
+<p align="center">
+  <a href="https://stay-hub-three.vercel.app">🚀 Live Demo</a> •
+  <a href="https://github.com/Shreyash-gadkar/StayHub">💻 GitHub Repository</a>
+</p>
 
-### Full-Stack Accommodation Rental Platform
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Node.js-24-339933?style=for-the-badge&logo=node.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/Express.js-4-000000?style=for-the-badge&logo=express&logoColor=white" />
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+</p>
 
-StayHub is a full-stack accommodation rental platform inspired by modern property-booking applications. Users can discover properties, create and manage listings, upload property images, leave reviews, make bookings, view property locations on interactive maps, and securely authenticate using user accounts.
+<p align="center">
+  <img src="https://img.shields.io/badge/Cloudinary-Image%20Storage-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vercel-Frontend-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Render-Backend-46E3B7?style=for-the-badge&logo=render&logoColor=white" />
+</p>
 
-The project was built to understand and implement real-world full-stack development concepts including RESTful APIs, MVC architecture, authentication, authorization, database relationships, middleware, image storage, geolocation, frontend-backend integration, and production deployment.
+🌐 Live Application
 
----
+🚀 Visit StayHub
 
-## 🌐 Live Demo
+Frontend: Vercel
 
-🚀 **[Visit StayHub](https://stay-hub-three.vercel.app)**
+Backend: Render
 
-### Backend API
+Database: MongoDB Atlas
 
-🔗 **[StayHub Backend](https://stayhub-v40w.onrender.com)**
+Image Storage: Cloudinary
 
-> The frontend is deployed on Vercel and the backend API is deployed on Render.
+✨ About StayHub
 
----
+StayHub is a full-stack accommodation rental platform inspired by modern property-booking applications.
 
-## ✨ Features
+Users can discover properties, create and manage listings, upload property images, leave reviews, make bookings, view property locations on interactive maps, and securely authenticate using user accounts.
 
-### 👤 Authentication & Authorization
+The project was built to understand practical full-stack development concepts including RESTful APIs, MVC architecture, authentication, authorization, database relationships, middleware, image storage, geolocation, frontend-backend integration, and production deployment.
 
-- User registration and login
-- Session-based authentication
-- Passport.js authentication
-- Protected routes
-- Persistent login sessions
-- Authorization for listing owners
-- Users can edit/delete only their own listings
-- Users can manage their own reviews
-- Secure authentication between frontend and backend
+🎯 Features
 
-### 🏠 Property Listings
+🔐 Authentication & Authorization
 
-- Create new property listings
-- View all available properties
-- Search and filter listings
-- View individual property details
-- Edit existing listings
-- Delete listings
-- Property title, description, price, location, and country information
-- Owner-based authorization
+User registration and login
 
-### 🖼️ Image Uploads
+Secure session-based authentication
 
-- Upload property images
-- Cloudinary integration
-- Cloud-based image storage
-- Image URLs stored with listing data
-- Image management through backend APIs
+Passport.js authentication
 
-### ⭐ Reviews & Ratings
+Protected routes
 
-- Add reviews to properties
-- Rating system
-- Display reviews on listing pages
-- Delete reviews
-- Review-author authorization
-- Real-time UI updates after adding or deleting reviews
+Owner-based authorization
 
-### 📅 Bookings
+Users can edit/delete only their own listings
 
-- Users can book properties
-- Booking API integration
-- Authentication-protected booking operations
-- Booking data associated with users and listings
+Users can manage their own reviews
 
-### 🗺️ Maps & Location
+Production session handling
 
-- Interactive property maps
-- Location-based property visualization
-- Geocoding support
-- Mapbox integration
-- Geographic coordinates stored with listings
+🏠 Property Listings
 
-### 🔐 Security & Validation
+Create new property listings
 
-- Authentication middleware
-- Authorization middleware
-- Joi request validation
-- Protected API routes
-- Session-based security
-- CORS configuration
-- Secure production cookies
-- Centralized error handling
+View all available properties
 
-### ⚠️ Error Handling
+Search and filter listings
 
-- Custom Express error handling
-- Centralized error middleware
-- Async error handling using `wrapAsync`
-- Custom error messages
-- Proper HTTP status codes
-- Frontend API error handling
+View individual property details
 
-### 📱 Responsive UI
+Edit listings
 
-- Responsive design
-- React-based frontend
-- Bootstrap styling
-- User-friendly navigation
-- Interactive listing and review interfaces
+Delete listings
 
----
+Property title, description, price, location, and country
 
-## 🛠️ Tech Stack
+Owner-based permissions
 
-### Frontend
+🖼️ Image Uploads
 
-- React
-- Vite
-- JavaScript
-- HTML5
-- CSS3
-- Bootstrap
-- React Router
+Property image uploads
 
-### Backend
+Multer integration
 
-- Node.js
-- Express.js
-- RESTful APIs
-- MVC Architecture
+Cloudinary cloud storage
 
-### Database
+Image URLs stored with listing data
 
-- MongoDB
-- Mongoose
-- MongoDB Atlas
+Secure image handling
 
-### Authentication
+⭐ Reviews & Ratings
 
-- Passport.js
-- Passport-Local
-- Passport-Local-Mongoose
-- Express-Session
+Add reviews to properties
 
-### Cloud Services
+Rating system
 
-- Cloudinary — Image Storage
-- Mapbox — Interactive Maps
-- MongoDB Atlas — Cloud Database
+Display reviews on listing pages
 
-### Validation & Middleware
+Delete own reviews
 
-- Joi
-- Multer
-- Method-Override
-- Node-Geocoder
-- Connect-Flash
-- CORS
+Review-author authorization
 
-### Development Tools
+Dynamic UI updates
 
-- Git
-- GitHub
-- VS Code
-- npm
+📅 Bookings
 
-### Deployment
+Book properties
 
-- Vercel — Frontend
-- Render — Backend
-- MongoDB Atlas — Database
-- Cloudinary — Image Storage
+Authentication-protected booking operations
 
----
+Booking API integration
 
-## 🏗️ Project Architecture
+User and listing relationships
 
-StayHub follows an MVC-based backend architecture with a separate React frontend.
+Booking data persistence
 
-```text
-                         StayHub
-                            │
-             ┌──────────────┴──────────────┐
-             │                             │
-       React Frontend                Express Backend
-          (Vite)                         (Node.js)
-             │                             │
-             │                        RESTful APIs
-             │                             │
-             │              ┌──────────────┼──────────────┐
-             │              │              │              │
-             │         Controllers       Routes       Middleware
-             │              │              │              │
-             │              └──────────────┼──────────────┘
-             │                             │
-             │                          Models
-             │                             │
-             │                        Mongoose
-             │                             │
-             │                      MongoDB Atlas
-             │
-             └────────────── API Requests ────────────────┘
-````
+🗺️ Maps & Location
 
----
+Interactive property maps
 
-## 📂 Project Structure
+Location-based property visualization
 
-```text
+Geocoding support
+
+Mapbox integration
+
+Geographic coordinates stored with listings
+
+🛡️ Validation & Error Handling
+
+Joi request validation
+
+Authentication middleware
+
+Authorization middleware
+
+Centralized error handling
+
+Async error handling with wrapAsync
+
+Custom error messages
+
+Proper HTTP status codes
+
+CORS configuration
+
+📱 Responsive UI
+
+React-based frontend
+
+Responsive design
+
+Bootstrap styling
+
+React Router navigation
+
+User-friendly interface
+
+🛠️ Tech Stack
+
+Frontend
+
+React
+
+Vite
+
+JavaScript
+
+HTML5
+
+CSS3
+
+Bootstrap
+
+React Router
+
+Backend
+
+Node.js
+
+Express.js
+
+RESTful APIs
+
+MVC Architecture
+
+Database
+
+MongoDB
+
+Mongoose
+
+MongoDB Atlas
+
+Authentication
+
+Passport.js
+
+Passport-Local
+
+Passport-Local-Mongoose
+
+Express-Session
+
+Cloud Services
+
+Cloudinary — Image Storage
+
+Mapbox — Interactive Maps
+
+MongoDB Atlas — Cloud Database
+
+Other Tools
+
+Joi
+
+Multer
+
+Node-Geocoder
+
+Method-Override
+
+Connect-Flash
+
+CORS
+
+Git
+
+GitHub
+
+Deployment
+
+Vercel — Frontend
+
+Render — Backend
+
+MongoDB Atlas — Database
+
+Cloudinary — Image Storage
+
+🏗️ Architecture
+
+                         ┌─────────────────────┐
+                         │        USER         │
+                         └──────────┬──────────┘
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │   React + Vite      │
+                         │      Frontend       │
+                         └──────────┬──────────┘
+                                    │
+                              REST API Calls
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │   Node.js +         │
+                         │   Express.js        │
+                         │      Backend        │
+                         └──────────┬──────────┘
+                                    │
+              ┌─────────────────────┼─────────────────────┐
+              │                     │                     │
+              ▼                     ▼                     ▼
+      ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+      │   MongoDB    │     │  Cloudinary  │     │    Mapbox    │
+      │    Atlas     │     │    Images    │     │     Maps     │
+      └──────────────┘     └──────────────┘     └──────────────┘
+
+🏛️ MVC Architecture
+
+StayHub follows an MVC-based backend architecture.
+
+                    Express Application
+                           │
+            ┌──────────────┼──────────────┐
+            │              │              │
+            ▼              ▼              ▼
+         Routes       Controllers      Middleware
+            │              │              │
+            └──────────────┼──────────────┘
+                           │
+                           ▼
+                         Models
+                           │
+                           ▼
+                     MongoDB Atlas
+
+Request Flow
+
+Client Request
+      │
+      ▼
+    Route
+      │
+      ▼
+ Middleware
+      │
+      ├── Authentication
+      ├── Authorization
+      └── Validation
+      │
+      ▼
+ Controller
+      │
+      ▼
+    Model
+      │
+      ▼
+ MongoDB Atlas
+      │
+      ▼
+  API Response
+
+📂 Project Structure
+
 StayHub/
 │
 ├── controllers/
@@ -259,84 +371,44 @@ StayHub/
 ├── middleware.js
 ├── package.json
 └── .gitignore
-```
 
----
+🔐 Authentication Flow
 
-## 🔄 Application Flow
-
-```text
 User
  │
  ▼
-React Frontend
- │
- │ HTTP / REST API
- ▼
-Express Backend
- │
- ├── Authentication
- ├── Authorization
- ├── Validation
- ├── Controllers
- └── Business Logic
- │
- ├───────────────┐
- ▼               ▼
-MongoDB       Cloudinary
-Atlas         Images
+Login Form
  │
  ▼
-Listing / Review / User / Booking Data
-```
-
----
-
-## 🔐 Authentication Flow
-
-```text
-User Login
-    │
-    ▼
-React Login Form
-    │
-    ▼
 POST /api/auth/login
-    │
-    ▼
-Express Authentication
-    │
-    ▼
+ │
+ ▼
 Passport.js
-    │
-    ▼
+ │
+ ▼
 Session Created
-    │
-    ▼
+ │
+ ▼
 Secure Session Cookie
-    │
-    ▼
+ │
+ ▼
 Authenticated API Requests
-```
 
----
+⭐ Review Flow
 
-## ⭐ Review Flow
-
-```text
 User
  │
  ▼
-React Review Form
+Review Form
  │
  ▼
 POST Review API
  │
  ▼
-Authentication Check
+Authentication
  │
  ▼
-Review Validation
+Validation
  │
  ▼
 Review Controller
@@ -345,14 +417,10 @@ Review Controller
 MongoDB
  │
  ▼
-Updated Review List
-```
+Updated Review
 
----
+📅 Booking Flow
 
-## 📅 Booking Flow
-
-```text
 User
  │
  ▼
@@ -365,228 +433,237 @@ Booking Form
 POST Booking API
  │
  ▼
-Authentication Check
+Authentication
  │
  ▼
-Validate Booking
+Validation
  │
  ▼
-Save Booking
+Booking Controller
  │
  ▼
 MongoDB Atlas
-```
+ │
+ ▼
+Booking Created
 
----
+🚀 Production Architecture
 
-## 🚀 Deployment Architecture
+                    🌍 Internet
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │       Vercel        │
+              │   React + Vite      │
+              │     Frontend        │
+              └──────────┬──────────┘
+                         │
+                         │ REST APIs
+                         ▼
+              ┌─────────────────────┐
+              │       Render        │
+              │ Node.js + Express   │
+              │      Backend        │
+              └──────────┬──────────┘
+                         │
+              ┌──────────┴──────────┐
+              │                     │
+              ▼                     ▼
+      ┌───────────────┐     ┌───────────────┐
+      │ MongoDB Atlas │     │   Cloudinary  │
+      │   Database    │     │     Images    │
+      └───────────────┘     └───────────────┘
 
-```text
-                   Internet
-                      │
-                      ▼
-              ┌───────────────┐
-              │    Vercel     │
-              │ React + Vite  │
-              └───────┬───────┘
-                      │
-                  REST APIs
-                      │
-                      ▼
-              ┌───────────────┐
-              │    Render     │
-              │ Node + Express│
-              └───────┬───────┘
-                      │
-             ┌────────┴────────┐
-             ▼                 ▼
-      MongoDB Atlas         Cloudinary
-       Database              Images
-```
+⚙️ Run Locally
 
----
+1. Clone the repository
 
-## ⚙️ Local Installation
-
-### 1. Clone the repository
-
-```bash
 git clone https://github.com/Shreyash-gadkar/StayHub.git
-```
-
-### 2. Navigate to the project
-
-```bash
 cd StayHub
-```
 
-### 3. Install backend dependencies
+2. Install backend dependencies
 
-```bash
 npm install
-```
 
-### 4. Install frontend dependencies
+3. Install frontend dependencies
 
-```bash
 cd frontend
 npm install
-```
 
-### 5. Configure environment variables
+4. Configure environment variables
 
-Create a `.env` file in the backend root:
+Create a .env file in the backend root:
 
-```env
 ATLASDB_URL=your_mongodb_atlas_connection_string
 SECRET=your_session_secret
+
 CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 CLOUDINARY_KEY=your_cloudinary_api_key
 CLOUDINARY_SECRET=your_cloudinary_api_secret
+
 MAP_TOKEN=your_mapbox_token
-```
 
-For local frontend development, configure the API URL as required by the project.
+⚠️ Never commit your .env file or expose secret keys publicly.
 
-> Never commit `.env` files or expose secret keys publicly.
-
-### 6. Start the backend
+5. Start the backend
 
 From the project root:
 
-```bash
 npm start
-```
 
-The backend runs on:
+Backend:
 
-```text
 http://localhost:8080
-```
 
-### 7. Start the frontend
+6. Start the frontend
 
 Open another terminal:
 
-```bash
 cd frontend
 npm run dev
-```
 
-The frontend will run on the Vite development server, usually:
+Frontend:
 
-```text
 http://localhost:5173
-```
 
----
+🔌 API Highlights
 
-## 🧪 API Integration
+Authentication
 
-The React frontend communicates with the Express backend through REST APIs.
-
-Examples include:
-
-```text
 POST   /api/auth/signup
 POST   /api/auth/login
 GET    /api/auth/me
 POST   /api/auth/logout
 
+Listings
+
 GET    /listings/api
 GET    /listings/api/:id
 POST   /listings/...
+PUT    /listings/...
+DELETE /listings/...
+
+Reviews
 
 POST   /listings/:id/reviews/api
-DELETE  /listings/:id/reviews/api/:reviewId
+DELETE /listings/:id/reviews/api/:reviewId
+
+Bookings
 
 POST   /api/bookings/...
-```
 
----
+🧠 Key Learnings
 
-## 📚 What I Learned
+Building StayHub helped me gain practical experience with:
 
-This project helped me understand practical full-stack development concepts including:
+Full-stack application architecture
 
-* Building RESTful APIs with Express
-* MVC architecture
-* React component-based development
-* React Router
-* Frontend-backend API integration
-* Authentication and authorization
-* Session management
-* MongoDB data modeling
-* Mongoose relationships and population
-* Middleware design
-* Request validation with Joi
-* Image uploads with Multer
-* Cloudinary integration
-* Geocoding and interactive maps
-* Error handling
-* CORS configuration
-* Production environment variables
-* Deployment with Vercel and Render
-* Debugging production authentication and session issues
-* Git and GitHub workflow
+React component-based development
 
----
+REST API design
 
-## 🔮 Future Improvements
+Express.js backend development
 
-Possible future improvements include:
+MVC architecture
 
-* Advanced property search and filtering
-* Date availability management
-* Booking history dashboard
-* User profile pages
-* Host dashboard
-* Admin dashboard
-* Email notifications
-* Payment gateway integration
-* Wishlist / favorite properties
-* Improved mobile UI
-* Property image galleries
-* Advanced map-based search
+Authentication and authorization
 
----
+Session management
 
-## 👨‍💻 Author
+MongoDB data modeling
 
-**Shreyash Gadkar**
+Mongoose relationships
+
+Middleware
+
+Joi validation
+
+Image uploads
+
+Cloudinary integration
+
+Geocoding
+
+Interactive maps
+
+CORS
+
+Production environment variables
+
+Git and GitHub
+
+Vercel deployment
+
+Render deployment
+
+Production debugging
+
+🧩 Real-World Challenges Solved
+
+During development, I worked through issues involving:
+
+Frontend ↔ backend API communication
+
+CORS configuration
+
+Authentication and authorization
+
+Session cookies in production
+
+MongoDB Atlas connectivity
+
+Cloudinary image uploads
+
+API route mismatches
+
+Request validation
+
+Production environment variables
+
+Vercel and Render deployment
+
+Debugging production-only issues
+
+🔮 Future Improvements
+
+💳 Payment gateway integration
+
+❤️ Wishlist / favorites
+
+📊 Host dashboard
+
+👤 User profile dashboard
+
+📅 Advanced booking availability
+
+📧 Email notifications
+
+🔎 Advanced search and filtering
+
+🖼️ Advanced image gallery
+
+🛠️ Admin dashboard
+
+📱 Further mobile optimization
+
+👨‍💻 Author
+
+Shreyash Gadkar
 
 B.Tech Computer Science Engineering
 
-GitHub:
-**[Shreyash-gadkar](https://github.com/Shreyash-gadkar)**
 
----
 
-## ⭐ Support
+⭐ Support
 
-If you find this project useful or interesting, consider giving the repository a ⭐ on GitHub.
+If you found this project useful or interesting, consider giving the repository a ⭐.
 
----
+<p align="center">
 
-## 📄 License
+🏠 StayHub
 
-This project was created for educational and portfolio purposes.
+Discover • Stay • Experience
 
-```
+Built with ❤️ using React, Node.js, Express & MongoDB.
 
-### One thing I'd definitely change from your old README
-
-Your old version says:
-
-> Responsive UI — Bootstrap-based design — EJS templating
-
-That's now misleading because your **actual user-facing frontend is React/Vite**. EJS is still part of the backend architecture/legacy server-rendered side, but it shouldn't be presented as the main frontend anymore.
-
-Also, the live demo should be:
-
-**`https://stay-hub-three.vercel.app`**
-
-not the Render URL, because that's your backend deployment.
-
-And since this is your **first completed full-stack project**, I'd keep this README fairly professional rather than stuffing it with every package you've ever installed. The architecture, features, deployment diagram, and what-you-learned sections are much more valuable to someone reviewing your GitHub.
-```
+</p>
