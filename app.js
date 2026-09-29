@@ -129,6 +129,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 const isProduction = process.env.NODE_ENV === "production";
 
+app.set("trust proxy", 1);
+
 const sessionOptions = {
   secret: process.env.SECRET || "mysupersecretcode",
 
@@ -138,14 +140,13 @@ const sessionOptions = {
 
   cookie: {
     maxAge: 7 * 24 * 60 * 60 * 1000,
-
     httpOnly: true,
-
     secure: isProduction,
-
     sameSite: isProduction ? "none" : "lax",
   },
 };
+
+app.use(session(sessionOptions));
 
 app.use(session(sessionOptions));
 

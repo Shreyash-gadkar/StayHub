@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://stayhub-v40w.onrender.com/api/:path*"
+    },
+    {
+      "source": "/listings/:path*",
+      "destination": "https://stayhub-v40w.onrender.com/listings/:path*"
+    }
+  ]
+}
