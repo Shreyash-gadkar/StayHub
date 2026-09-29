@@ -4,57 +4,73 @@ const Schema = mongoose.Schema;
 
 const Review = require("./review");
 
-const listingSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-
-  description: {
-    type: String,
-    required: true,
-  },
-
-  image: {
-    url: String,
-    filename: String,
-  },
-
-  price: {
-    type: Number,
-  },
-
-  location: {
-    type: String,
-  },
-
-  country: {
-    type: String,
-  },
-  geometry: {
-    type: {
+const listingSchema = new Schema(
+  {
+    title: {
       type: String,
-      enum: ["Point"],
       required: true,
+      trim: true,
     },
-    coordinates: {
-      type: [Number],
+
+    description: {
+      type: String,
       required: true,
+      trim: true,
     },
-  },
 
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
+    image: {
+      url: String,
+      filename: String,
+    },
 
-  reviews: [
-    {
+    price: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+
+    location: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    country: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    geometry: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        required: true,
+      },
+
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
+    },
+
+    owner: {
       type: Schema.Types.ObjectId,
-      ref: "Review",
+      ref: "User",
+      required: true,
     },
-  ],
-});
+
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  },
+);
 
 // Cascade Delete Reviews
 listingSchema.post("findOneAndDelete", async (listing) => {

@@ -1,16 +1,20 @@
 const User = require("../models/user");
 
+// ======================================================
+// Signup - EJS
+// ======================================================
+
 module.exports.renderSignupForm = (req, res) => {
   res.render("users/signup");
 };
 
-module.exports.signup = async (req, res) => {
+module.exports.signup = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
 
     const newUser = new User({
-      email,
       username,
+      email,
     });
 
     const registeredUser = await User.register(newUser, password);
@@ -24,11 +28,16 @@ module.exports.signup = async (req, res) => {
 
       res.redirect("/listings");
     });
-  } catch (e) {
-    req.flash("error", e.message);
+  } catch (err) {
+    req.flash("error", err.message);
+
     res.redirect("/signup");
   }
 };
+
+// ======================================================
+// Login - EJS
+// ======================================================
 
 module.exports.renderLoginForm = (req, res) => {
   res.render("users/login");
@@ -41,6 +50,10 @@ module.exports.login = async (req, res) => {
 
   res.redirect(redirectUrl);
 };
+
+// ======================================================
+// Logout - EJS
+// ======================================================
 
 module.exports.logout = (req, res, next) => {
   req.logout((err) => {

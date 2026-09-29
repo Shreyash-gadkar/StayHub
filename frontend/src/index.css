@@ -1,111 +1,1311 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --primary: #ff385c;
+  --primary-dark: #d90429;
+  --secondary: #222222;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --text: #222222;
+  --text-light: #717171;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
+  --bg: #ffffff;
+  --bg-light: #f7f7f7;
+
+  --border: #dddddd;
+  --success: #008a05;
+  --danger: #c13515;
+
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.14);
+
+  --radius: 12px;
+
+  --sans:
+    Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Arial, sans-serif;
+
+  font-family: var(--sans);
   color: var(--text);
   background: var(--bg);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ======================================================
+   Navbar
+   ====================================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.navbar-container {
+  width: min(1400px, 94%);
+  min-height: 72px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.navbar-brand {
+  color: var(--primary);
+  font-size: 25px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.navbar-links a {
+  transition: color 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: var(--primary);
+}
+
+.navbar-user {
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.navbar-logout {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 15px;
+  background: var(--secondary);
+  color: white;
+  font-weight: 600;
+}
+
+.navbar-logout:hover {
+  background: #444;
+}
+
+/* ======================================================
+   Common
+   ====================================================== */
+
+.page-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.page-title {
+  margin: 0 0 24px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.loading {
+  padding: 50px 20px;
   text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  color: var(--text-light);
+}
+
+.error-message {
+  margin: 15px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #fff0f0;
+  color: var(--danger);
+  text-align: center;
+}
+
+.success-message {
+  margin: 15px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #edfff0;
+  color: var(--success);
+  text-align: center;
+}
+
+.empty-state {
+  padding: 60px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-light);
+  text-align: center;
+}
+
+.empty-state h2 {
+  margin: 0 0 8px;
+}
+
+.empty-state p {
+  margin: 0;
+  color: var(--text-light);
+}
+
+/* ======================================================
+   Buttons
+   ====================================================== */
+
+.primary-button,
+.secondary-button,
+.delete-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 44px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.primary-button {
+  border: none;
+  padding: 12px 20px;
+  background: var(--primary);
+  color: white;
+}
+
+.primary-button:hover {
+  background: var(--primary-dark);
+}
+
+.secondary-button {
+  border: 1px solid var(--border);
+  padding: 11px 20px;
+  background: white;
+  color: var(--text);
+}
+
+.secondary-button:hover {
+  background: var(--bg-light);
+}
+
+.delete-button {
+  border: none;
+  padding: 12px 20px;
+  background: var(--danger);
+  color: white;
+}
+
+.delete-button:hover {
+  background: #a82b12;
+}
+
+/* ======================================================
+   Home
+   ====================================================== */
+
+.home-page {
+  min-height: calc(100vh - 72px);
+}
+
+.hero-section {
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 56, 92, 0.08),
+    rgba(255, 255, 255, 1) 55%,
+    rgba(247, 247, 247, 1)
+  );
+}
+
+.hero-content {
+  width: min(800px, 100%);
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #fff0f3;
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero-content h1 {
+  margin: 0;
+  font-size: clamp(42px, 7vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.hero-description {
+  max-width: 650px;
+  margin: 24px auto 32px;
+  color: var(--text-light);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.home-features {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 70px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.feature-icon {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.feature-card h2 {
+  margin: 0 0 10px;
+  font-size: 21px;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* ======================================================
+   Listings
+   ====================================================== */
+
+.listings-page {
+  min-height: calc(100vh - 72px);
+}
+
+.listings-header {
+  margin-bottom: 30px;
+}
+
+.listings-search {
+  width: 100%;
+  max-width: 650px;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  outline: none;
+  background: white;
+}
+
+.listings-search:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.12);
+}
+
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* ======================================================
+   Listing Card
+   ====================================================== */
+
+.listing-card {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.listing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.listing-card-image-link {
+  display: block;
+}
+
+.listing-card-image {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  background: var(--bg-light);
+}
+
+.listing-card-content {
+  padding: 18px;
+}
+
+.listing-card-title {
+  margin: 0 0 7px;
+  font-size: 20px;
+}
+
+.listing-card-location {
+  margin: 0 0 10px;
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.listing-card-description {
+  margin: 0 0 16px;
+  color: var(--text-light);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.listing-card-footer {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.listing-card-footer strong {
+  font-size: 18px;
+}
+
+.listing-card-footer span {
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.listing-card-button {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  border-radius: 8px;
+  background: var(--secondary);
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+
+.listing-card-button:hover {
+  background: #444;
+}
+
+/* ======================================================
+   Listing Details
+   ====================================================== */
+
+.listing-details-page {
+  max-width: 1100px;
+}
+
+.listing-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.listing-details-image-wrapper {
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg-light);
+}
+
+.listing-details-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.listing-details-content {
+  padding: 10px 0;
+}
+
+.listing-location {
+  margin: 0 0 12px;
+  color: var(--text-light);
+}
+
+.listing-details-content h2 {
+  margin: 22px 0;
+}
+
+.listing-details-content h2 span {
+  color: var(--text-light);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.listing-description {
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.listing-owner {
+  margin: 20px 0;
+}
+
+.listing-owner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ======================================================
+   Booking Form
+   ====================================================== */
+
+.booking-form {
+  width: min(600px, 100%);
+  margin: 45px auto;
+  padding: 25px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.booking-form h2 {
+  margin: 0 0 10px;
+}
+
+.booking-form > p {
+  color: var(--text-light);
+}
+
+/* ======================================================
+   Booking Login
+   ====================================================== */
+
+.booking-login-message {
+  margin: 45px auto;
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-light);
+  text-align: center;
+}
+
+.booking-login-message h2 {
+  margin-top: 0;
+}
+
+/* ======================================================
+   Reviews
+   ====================================================== */
+
+.reviews-section {
+  margin-top: 50px;
+  padding-top: 35px;
+  border-top: 1px solid var(--border);
+}
+
+.reviews-list {
+  display: grid;
+  gap: 15px;
+}
+
+.review-card {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+}
+
+.review-card p {
+  margin: 7px 0;
+}
+
+.review-card p:last-child {
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* ======================================================
+   Bookings
+   ====================================================== */
+
+.bookings-list {
+  display: grid;
+  gap: 22px;
+}
+
+.booking-card {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.booking-card-image {
+  min-height: 250px;
+}
+
+.booking-card-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  object-fit: cover;
+}
+
+.booking-card-content {
+  padding: 24px;
+}
+
+.booking-card-content h2 {
+  margin: 0 0 12px;
+}
+
+.booking-card-content p {
+  margin: 9px 0;
+  color: var(--text-light);
+}
+
+.booking-card-content .secondary-button {
+  margin-top: 15px;
+}
+
+/* ======================================================
+   Forms
+   ====================================================== */
+
+.form-page {
+  width: min(600px, 92%);
+  margin: 40px auto;
+}
+
+.form-page h1 {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.form {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  gap: 16px;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+.form-group label {
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #bdbdbd;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  color: var(--text);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.12);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ======================================================
+   Create / Edit Listing
+   ====================================================== */
+
+.create-listing-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.create-listing-page h1 {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.listing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.listing-form input,
+.listing-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.listing-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.image-label {
+  font-weight: 600;
+}
+
+.listing-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.listing-form button:hover {
+  background: var(--primary-dark);
+}
+
+/* ======================================================
+   Responsive
+   ====================================================== */
+
+@media (max-width: 1000px) {
+  .listings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .navbar-container {
+    flex-direction: column;
+    padding: 15px 0;
+  }
+
+  .navbar-links {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+@media (max-width: 768px) {
+  .page-container {
+    width: 94%;
+    padding: 24px 0;
+  }
+
+  .page-title {
+    font-size: 26px;
+  }
+
+  .form-page {
+    margin: 25px auto;
+  }
+
+  .home-features {
+    grid-template-columns: 1fr;
+    padding: 45px 0;
+  }
+
+  .hero-section {
+    min-height: 500px;
+    padding: 50px 20px;
+  }
+
+  .hero-content h1 {
+    letter-spacing: -1px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .listing-details {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .listing-details-image {
+    height: 350px;
+  }
+
+  .booking-card {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-card-image {
+    min-height: 220px;
+  }
+
+  .booking-card-image img {
+    min-height: 220px;
+    max-height: 280px;
+  }
+
+  .navbar-links {
+    gap: 12px;
+    font-size: 14px;
   }
 }
-p {
+
+@media (max-width: 480px) {
+  .navbar-brand {
+    font-size: 22px;
+  }
+
+  .navbar-links {
+    width: 100%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .primary-button,
+  .hero-actions .secondary-button {
+    width: 100%;
+  }
+
+  .listing-details-image {
+    height: 280px;
+  }
+
+  .booking-form {
+    padding: 20px;
+  }
+}
+/* =========================================
+   REVIEWS SECTION
+========================================= */
+
+.reviews-section {
+  margin-top: 60px;
+  padding-top: 35px;
+  border-top: 1px solid #e5e7eb;
+  margin-bottom: 60px;
+}
+
+/* =========================================
+   REVIEWS HEADER
+========================================= */
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.reviews-header h2 {
   margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+.reviews-subtitle {
+  margin: 6px 0 0;
+  color: #777;
+  font-size: 14px;
 }
 
-code {
+.reviews-count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 15px;
+  border-radius: 20px;
+  background: #fff7ed;
+  color: #555;
+  font-size: 14px;
+}
+
+.reviews-count span:first-child {
+  color: #f59e0b;
+}
+
+/* =========================================
+   REVIEW FORM CARD
+========================================= */
+
+.review-form-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 35px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.review-form-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.review-user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff385c, #ff6b81);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.review-form-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.review-form-header p {
+  margin: 4px 0 0;
+  color: #777;
+  font-size: 13px;
+}
+
+/* =========================================
+   RATING
+========================================= */
+
+.review-rating-field {
+  margin-bottom: 20px;
+}
+
+.review-rating-field label,
+.review-comment-field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.star-rating-input {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.rating-star {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 28px;
+  cursor: pointer;
+  color: #d1d5db;
+  transition:
+    transform 0.15s ease,
+    color 0.15s ease;
+}
+
+.rating-star:hover {
+  transform: scale(1.15);
+  color: #fbbf24;
+}
+
+.rating-star.active {
+  color: #fbbf24;
+}
+
+.rating-value {
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* =========================================
+   COMMENT
+========================================= */
+
+.review-comment-field {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.review-comment-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 110px;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.review-comment-field textarea:focus {
+  border-color: #ff385c;
+  box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.1);
+}
+
+.character-count {
+  text-align: right;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #999;
+}
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.review-submit-button {
+  border: none;
+  border-radius: 9px;
+  padding: 11px 20px;
+  background: #ff385c;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.review-submit-button:hover:not(:disabled) {
+  background: #e31c5f;
+  transform: translateY(-1px);
+}
+
+.review-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   ERROR
+========================================= */
+
+.review-error {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+
+/* =========================================
+   REVIEW LIST
+========================================= */
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =========================================
+   REVIEW CARD
+========================================= */
+
+.review-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 20px;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.review-card:hover {
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.review-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: #444;
+}
+
+.review-author strong {
+  display: block;
   font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.review-stars {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #f59e0b;
+}
+
+/* =========================================
+   REVIEW COMMENT
+========================================= */
+
+.review-comment {
+  margin: 16px 0 2px;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   DELETE REVIEW
+========================================= */
+
+.review-delete-button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #dc2626;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.review-delete-button:hover:not(:disabled) {
+  background: #fee2e2;
+  transform: scale(1.05);
+}
+
+.review-delete-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   LOGIN CARD
+========================================= */
+
+.review-login-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fafafa;
+  margin-bottom: 30px;
+}
+
+.login-review-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #fff7ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.review-login-card h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.review-login-card p {
+  margin: 0 0 6px;
+  color: #777;
+  font-size: 13px;
+}
+
+.review-login-card a {
+  color: #ff385c;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+/* =========================================
+   OWNER MESSAGE
+========================================= */
+
+.review-owner-message {
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #f9fafb;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* =========================================
+   EMPTY REVIEWS
+========================================= */
+
+.empty-reviews {
+  text-align: center;
+  padding: 45px 20px;
+  border: 1px dashed #d1d5db;
+  border-radius: 14px;
+  background: #fafafa;
+}
+
+.empty-review-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.empty-reviews h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.empty-reviews p {
+  margin: 0;
+  color: #888;
+  font-size: 14px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .reviews-section {
+    margin-top: 35px;
+    padding-top: 25px;
+  }
+
+  .reviews-header {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .reviews-header h2 {
+    font-size: 23px;
+  }
+
+  .reviews-count {
+    font-size: 12px;
+  }
+
+  .review-form-card {
+    padding: 18px;
+  }
+
+  .review-card {
+    padding: 16px;
+  }
+
+  .rating-star {
+    font-size: 25px;
+  }
 }

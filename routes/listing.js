@@ -1,29 +1,52 @@
 const express = require("express");
+
 const router = express.Router();
 
 const multer = require("multer");
+
 const { storage } = require("../cloudConfig");
+
 const upload = multer({ storage });
 
 const { isLoggedIn, isOwner, validateListing } = require("../middleware");
 
 const wrapAsync = require("../utils/wrapAsync");
+
 const listingController = require("../controllers/listings");
 
-// ==========================
-// Index Route
-// ==========================
+// Review Router
+const reviewRouter = require("./review");
+
+// ======================================================
+// Index Routes
+// ======================================================
+
+// EJS
 router.get("/", wrapAsync(listingController.index));
+
+// React API
 router.get("/api", wrapAsync(listingController.apiIndex));
 
-// ==========================
-// New Route
-// ==========================
+// ======================================================
+// New Listing
+// ======================================================
+
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
-// ==========================
-// Create Route
-// ==========================
+// ======================================================
+// Create Listing
+// ======================================================
+
+// React API
+router.post(
+  "/api",
+  isLoggedIn,
+  upload.single("image"),
+  validateListing,
+  wrapAsync(listingController.createListingApi),
+);
+
+// EJS
 router.post(
   "/",
   isLoggedIn,
@@ -32,15 +55,31 @@ router.post(
   wrapAsync(listingController.createListing),
 );
 
-// ==========================
-// Show Route
-// ==========================
+// ======================================================
+// Show Listing
+// ======================================================
+
+// React API
 router.get("/api/:id", wrapAsync(listingController.showListingApi));
 
+// EJS
 router.get("/:id", wrapAsync(listingController.showListing));
-// ==========================
-// Edit Route
-// ==========================
+
+// ======================================================
+// Edit Listing
+// ======================================================
+
+// React API
+router.put(
+  "/api/:id",
+  isLoggedIn,
+  isOwner,
+  upload.single("image"),
+  validateListing,
+  wrapAsync(listingController.updateListingApi),
+);
+
+// EJS
 router.get(
   "/:id/edit",
   isLoggedIn,
@@ -48,9 +87,10 @@ router.get(
   wrapAsync(listingController.editListing),
 );
 
-// ==========================
-// Update Route
-// ==========================
+// ======================================================
+// Update Listing
+// ======================================================
+
 router.put(
   "/:id",
   isLoggedIn,
@@ -60,14 +100,34 @@ router.put(
   wrapAsync(listingController.updateListing),
 );
 
-// ==========================
-// Delete Route
-// ==========================
+// ======================================================
+// Delete Listing
+// ======================================================
+
+// React API
+router.delete(
+  "/api/:id",
+  isLoggedIn,
+  isOwner,
+  wrapAsync(listingController.destroyListingApi),
+);
+
+// EJS
 router.delete(
   "/:id",
   isLoggedIn,
   isOwner,
   wrapAsync(listingController.destroyListing),
 );
+
+// ======================================================
+// React API - Reviews
+// ======================================================
+
+router.use("/api/:id/reviews", reviewRouter);
+
+// ======================================================
+// Export Router
+// ======================================================
 
 module.exports = router;

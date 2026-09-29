@@ -2,21 +2,35 @@ import { Link } from "react-router-dom";
 
 function ListingCard({ listing }) {
   return (
-    <div>
-      <img src={listing.image.url} alt={listing.title} />
+    <article className="listing-card">
+      <Link to={`/listings/${listing._id}`} className="listing-card-image-link">
+        <img
+          src={listing.image?.url || "/placeholder.jpg"}
+          alt={listing.title}
+          className="listing-card-image"
+        />
+      </Link>
 
-      <h2>{listing.title}</h2>
+      <div className="listing-card-content">
+        <h2 className="listing-card-title">{listing.title}</h2>
 
-      <p>{listing.description}</p>
+        <p className="listing-card-location">
+          {listing.location}, {listing.country}
+        </p>
 
-      <p>₹{listing.price} / night</p>
+        <p className="listing-card-description">{listing.description}</p>
 
-      <p>
-        {listing.location}, {listing.country}
-      </p>
+        <div className="listing-card-footer">
+          <strong>₹{listing.price}</strong>
 
-      <Link to={`/listings/${listing._id}`}>View Details</Link>
-    </div>
+          <span>/ night</span>
+        </div>
+
+        <Link to={`/listings/${listing._id}`} className="listing-card-button">
+          View Details
+        </Link>
+      </div>
+    </article>
   );
 }
 
